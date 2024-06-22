@@ -16,6 +16,7 @@ import git
 
 from server import PromptServer
 import manager_core as core
+import manager_util
 import cm_global
 
 print(f"### Loading: ComfyUI-Manager ({core.version_str})")
@@ -1672,10 +1673,10 @@ import asyncio
 async def default_cache_update():
     async def get_cache(filename):
         uri = 'https://raw.githubusercontent.com/ltdrdata/ComfyUI-Manager/main/' + filename
-        cache_uri = str(core.simple_hash(uri)) + '_' + filename
+        cache_uri = str(manager_util.simple_hash(uri)) + '_' + filename
         cache_uri = os.path.join(core.cache_dir, cache_uri)
 
-        json_obj = await core.get_data(uri, True)
+        json_obj = await manager_util.get_data(uri, True)
 
         with core.cache_lock:
             with open(cache_uri, "w", encoding='utf-8') as file:

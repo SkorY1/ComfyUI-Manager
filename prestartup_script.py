@@ -1,4 +1,3 @@
-import datetime
 import os
 import subprocess
 import sys
@@ -248,7 +247,7 @@ try:
 
         def sync_write(self, message):
             with log_lock:
-                timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')[:-3]
+                timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')[:-3]
                 if self.last_char != '\n':
                     log_file.write(message)
                 else:
@@ -329,7 +328,7 @@ except:
     print(f"## [ERROR] ComfyUI-Manager: GitPython package seems to be installed, but failed to load somehow. Make sure you have a working git client installed")
 
 
-print("** ComfyUI startup time:", datetime.datetime.now())
+print("** ComfyUI startup time:", datetime.now())
 print("** Platform:", platform.system())
 print("** Python version:", sys.version)
 print("** Python executable:", sys.executable)
